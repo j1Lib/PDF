@@ -1,0 +1,5 @@
+C:\Users\j113203\Desktop\j1Lib\j1Lib_PDF\j1Lib_PDF\bin\Debug\j1Lib_PDF.dll
+C:\Users\j113203\Desktop\j1Lib\j1Lib_PDF\j1Lib_PDF\bin\Debug\j1Lib_PDF.pdb
+C:\Users\j113203\Desktop\j1Lib\j1Lib_PDF\j1Lib_PDF\obj\Debug\j1Lib_PDF.csprojResolveAssemblyReference.cache
+C:\Users\j113203\Desktop\j1Lib\j1Lib_PDF\j1Lib_PDF\obj\Debug\j1Lib_PDF.dll
+C:\Users\j113203\Desktop\j1Lib\j1Lib_PDF\j1Lib_PDF\obj\Debug\j1Lib_PDF.pdb
