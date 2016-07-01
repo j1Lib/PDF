@@ -4,7 +4,8 @@
       
 # Depend
 
-      [j1Lib.Cache](https://github.com/j1Lib/Cache/)
+      Cache
+      https://github.com/j1Lib/Cache/
 
 PDF on Internet
 ![img](http://i.imgur.com/jeYcBLx.png)
