@@ -8,38 +8,18 @@ namespace j1Lib
     {
         public static void PDFSupport(this WebBrowser target, bool value)
         {
-            string file = "";
             if (value)
             {
-                target.Navigating += (sender, e) =>
-                {
-                    WebBrowser sender_ = ((WebBrowser)sender);
-                    if (!e.Url.ToString().StartsWith("http://mozilla.github.io/pdf.js/web/viewer.html?file=") && e.Url.ToString().ToLower().EndsWith(".pdf"))
-                    {
-                        e.Cancel = true;
-                        if (e.Url.IsFile)
-                        {
-                            file = atob(e.Url);
-                            (sender_).Url = new Uri("http://mozilla.github.io/pdf.js/web/viewer.html?file=");
-                        }
-                        else
-                        {
-                            (sender_).Url = new Uri("http://mozilla.github.io/pdf.js/web/viewer.html?file=" + e.Url.ToString());
-                        }
-                    }
-                };
-                target.DocumentCompleted += (sender, e) =>
-                {
-                    WebBrowser sender_ = ((WebBrowser)sender);
-                    if (!string.IsNullOrEmpty(file) && e.Url.ToString().Equals("http://mozilla.github.io/pdf.js/web/viewer.html?file="))
-                    {
-                        HtmlElement script = sender_.Document.CreateElement("script");
-                        script.InnerHtml = "window.openPdfAsBase64=function(n){for(var o=window.atob(n),e=o.length,i=new Uint8Array(e),a=0;e>a;a++)i[a]=o.charCodeAt(a);PDFViewerApplication.open(i)}";
-                        sender_.Document.GetElementsByTagName("head")[0].AppendChild(script);
-                        sender_.Document.InvokeScript("openPdfAsBase64", new[] { file });
-                        file = "";
-                    }
-                };
+                j1Lib_PDF.PDFSupport pdf = new j1Lib_PDF.PDFSupport();
+                target.setCache("PDFSupport", pdf);
+                target.Navigating += pdf.PDFSupport_;
+                target.DocumentCompleted += pdf.PDFSupport_;
+            }
+            else
+            {
+                j1Lib_PDF.PDFSupport pdf = (j1Lib_PDF.PDFSupport)target.getCache("PDFSupport", null);
+                target.Navigating -= pdf.PDFSupport_;
+                target.DocumentCompleted -= pdf.PDFSupport_;
             }
         }
 
